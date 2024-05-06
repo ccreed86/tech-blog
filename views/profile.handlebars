@@ -5,31 +5,32 @@
 </div>
 
 <div class="row mt-4">
+
   <div class="col-md-6">
     <h3>New Post:</h3>
-    <form class="form new-project-form">
+    <form class="form new-post-form">
       <div class="form-group">
-        <label for="project-name">Post Title:</label>
-        <input class="form-input" type="text" id="project-name" name="project-name" />
+        <label for="project-name" id="post-title">Post Title:</label>
+        <input class="form-input" type="text" id="posts-title" name="project-name" />
       </div>
       <div class="form-group">
-        <label for="project-desc">Post:</label>
-        <textarea class="form-input" id="project-desc" name="project-desc"></textarea>
+        <label for="project-desc">Blog:</label>
+        <textarea class="form-input" id="posts-body" name="project-desc"></textarea>
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" class="btn btn-primary">Post that shit!</button>
       </div>
     </form>
   </div>
 
   {{#if posts.length}}
-  <div class="col-md-6 project-list">
+  <div class="col-md-6 posts-list">
     <h3>Current Posts:</h3>
 
     {{#each posts as |posts|}}
     <div class="row mb-2">
       <div class="col-md-8">
-        <h4><a href="/project/{{post.id}}">{{post.name}}</a></h4>
+        <h4><a href="/posts/{{posts.id}}">{{posts.title}}</a></h4>
       </div>
       <div class="col-md-4">
         <button class="btn btn-sm btn-danger" data-id="{{posts.id}}">DELETE</button>
@@ -39,5 +40,6 @@
   </div>
   {{/if}}
 </div>
+
 
 <script src="./js/profile.js"></script>

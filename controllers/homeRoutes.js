@@ -2,6 +2,8 @@ const router = require('express').Router();
 const { Posts, User, Comments } = require('../models');
 const withAuth = require('../utils/auth');
 
+
+//GET for the Posts on the homepage
 router.get('/', async (req, res) => {
   try {
     // Get all posts and JOIN with user data
@@ -11,11 +13,6 @@ router.get('/', async (req, res) => {
           model: User,
           attributes: ['username'],
         },
-        // {
-        //   model: Comments,
-        //   atttribues:
-        //   ['post_id'],
-        // },
       ],
     });
 
@@ -40,17 +37,12 @@ router.get('/posts/:id', async (req, res) => {
           model: User,
           attributes: ['username'],
         },
-        {
-          model: Comments,
-          atttribues:
-          ['post_id'],
-        },
       ],
     });
 
     const posts = postsData.get({ plain: true });
 
-    res.render('posts', {
+    res.render('profile', {
       ...posts,
       logged_in: req.session.logged_in
     });

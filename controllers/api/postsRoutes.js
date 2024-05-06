@@ -1,14 +1,15 @@
 const router = require('express').Router();
-// Import the Project model from the models folder
+// Import the Posts model from the models folder
 const { Posts } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
 // If a POST request is made to /api/posts, a new post is created. If there is an error, the function returns with a 400 error. 
-router.post('/',withAuth, async (req, res) => {
+router.post('/new', withAuth, async (req, res) => {
   try {
     const newPost = await Posts.create({
-      ...req.body,
+      title: req.body.title,
+      body: req.body.body,
       user_id: req.session.user_id,
     });
 
@@ -18,8 +19,9 @@ router.post('/',withAuth, async (req, res) => {
   }
 });
 
+
 // If a DELETE request is made to /api/posts/:id, that posts is deleted. 
-router.delete('/:id',withAuth, async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
   try {
     const postData = await Posts.destroy({
       where: {
